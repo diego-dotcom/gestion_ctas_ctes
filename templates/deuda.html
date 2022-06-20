@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h3 class="my-5">Estado de cuenta: {{deuda[0][1]}}</h3>
+
+<table class="table table-hover table">
+    <thead>
+        <tr>
+            <th scope="col">N°</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Concepto</th>
+            <th scope="col">Importe</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for factura in deuda %}
+        <tr>
+            <th scope="row">{{factura[2]}}</th>
+            <td>{{factura[3]}}</td>
+            <td>{{factura[4]}}</td>
+            <td>{{factura[5]}}</td>
+            <td>
+                <form method="POST" action="/nuevo_recibo" enctype="multipart/form-data">
+                    <input type="hidden" name="id_cliente" value="{{factura[0]}}">
+                    <input type="hidden" name="denominacion" value="{{factura[1]}}">
+                    <input type="hidden" name="id_factura" value="{{factura[2]}}">
+                    <input type="hidden" name="concepto" value="{{factura[4]}}">
+                    <input type="hidden" name="importe" value="{{factura[5]}}">
+                    <button class=" btn btn-sm btn-primary">Emitir recibo</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+
+
+<h4 class="my-5 text-end">Total deuda: $ {{total[0][0]}}</h4>
+<div class="d-flex justify-content-end">
+    <a class="btn btn-outline-success" href="{{url_for('resumen', id = deuda[0][0])}}">Resumen detallado</a>
+</div>
+
+
+
+
+{% endblock %}

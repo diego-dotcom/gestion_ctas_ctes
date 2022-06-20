@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h3 class="my-5">Nuevo recibo</h3>
+
+<form method="POST" action="/guardar_recibo" enctype="multipart/form-data" class="mt-5">
+
+    <div class="my-3">
+        <input type="date" name="fecha">
+    </div>
+    {{datos_recibo[3]}}
+    <div class="my-3 col-4">
+        <select class="form-select" name="id_cliente" disabled>
+            <option selected value="{{datos_recibo[0]}}">{{datos_recibo[1]}}</option>
+        </select>
+    </div>
+
+    <div class="mb-3 col-4">
+        <label class="form-label ms-1">Importe</label>
+        <label class="form-label ms-1">{{datos_recibo[4]}}</label>
+    </div>
+
+    <div class="my-3 col-4">
+        <select class="form-select" name="forma_cobro">
+            <option selected>Efectivo</option>
+            <option>Transferencia</option>
+        </select>
+    </div>
+
+    <input type="hidden" name="id_cliente" value="{{datos_recibo[0]}}">
+    <input type="hidden" name="id_factura" value="{{datos_recibo[2]}}">
+    <input type="hidden" name="importe" value="{{datos_recibo[4]}}">
+
+    <button class="btn btn-success" type="submit">Guardar</button>
+    <a class="btn btn-secondary" href="{{url_for('deuda', id = datos_recibo[0])}}">Volver</a>
+
+
+</form>
+
+{% endblock %}

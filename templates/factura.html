@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h3 class="my-5">Nueva factura</h3>
+
+<form method="POST" action="/guardar_factura" enctype="multipart/form-data" class="mt-5">
+    <div class="row">
+
+        <div class="col-4">
+            <select class="form-select" name="cliente_id">
+                <option selected>Seleccione un cliente</option>
+                {% for cliente in clientes%}
+                <option value={{cliente[0]}}>{{cliente[1]}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+    </div>
+    <div class="col-2 my-3">
+        <input type="date" name="fecha" id="">
+    </div>
+    <div class="row mt-1">
+        <div class="col-6">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label ms-1">Concepto</label>
+                <input type="text" class="form-control" name="concepto">
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label ms-1">Importe</label>
+                <input type="number" min="0" step="any" class="form-control" name="importe">
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-success" type="submit">Guardar</button>
+    <a class="btn btn-secondary" href="{{url_for('index')}}">Volver</a>
+
+
+</form>
+
+{% endblock %}
