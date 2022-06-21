@@ -8,8 +8,9 @@
     <div class="row">
 
         <div class="col-4">
-            <select class="form-select" name="cliente_id">
-                <option selected>Seleccione un cliente</option>
+            <label for="validationDefault01" class="form-label">Seleccione un cliente</label>
+            <select class="form-select" name="cliente_id" id="validationDefault01" required>
+                <option selected disabled value="">...</option>
                 {% for cliente in clientes%}
                 <option value={{cliente[0]}}>{{cliente[1]}}</option>
                 {% endfor %}
@@ -18,19 +19,19 @@
 
     </div>
     <div class="col-2 my-3">
-        <input type="date" name="fecha" id="">
+        <input type="date" name="fecha" id="validationDefault02" required>
     </div>
     <div class="row mt-1">
         <div class="col-6">
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label ms-1">Concepto</label>
-                <input type="text" class="form-control" name="concepto">
+                <label for="validationDefault03" class="form-label ms-1">Concepto</label>
+                <input type="text" class="form-control" name="concepto" id="validationDefault03" required>
             </div>
         </div>
         <div class="col-2">
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label ms-1">Importe</label>
-                <input type="number" min="0" step="any" class="form-control" name="importe">
+                <label for="validationDefault04" class="form-label ms-1">Importe</label>
+                <input type="number" min="0" step="any" class="form-control" name="importe" id="validationDefault04">
             </div>
         </div>
     </div>
